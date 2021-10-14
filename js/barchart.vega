@@ -1,0 +1,30 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_homework2/main/data/Melbourne_housing_TRANSFORMED2.csv"},
+    "mark": "bar",
+    "encoding": {
+      "x": {
+          "bin":{"step":200000,"extent":[100000,2000000]},
+        "field": "median",
+        "type": "ordinal",
+        "title": "Price interval"
+      },
+      "y": {
+        "aggregate": "count",
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "type",
+        "type": "nominal",
+        "scale": {
+          "domain": ["Houses", "Units", "Others"],
+          "range": ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4"]
+        },
+        "title": "Houses type"
+      }
+    },
+    "transform": [{
+        "filter":"datum.median > 200000 && datum.median < 2000000"
+    }]
+  }
+  

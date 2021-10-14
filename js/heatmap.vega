@@ -1,11 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "data/cars.json"},
+  "width":600,
+  "data": {"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_Assignment_2/main/data/Melbourne_housing_FULL_landsz.csv"},
   "mark": "rect",
+  "transform": [
+      {"filter": "datum.Distance <21"},
+      {"filter": "datum.Rooms <6 "}
+  ],
   "encoding": {
-    "y": {"field": "Origin", "type": "nominal"},
-    "x": {"field": "Cylinders", "type": "ordinal"},
-    "color": {"aggregate": "mean", "field": "Horsepower"}
+    "y": {"field": "Distance", "type": "ordinal", "sort": ["20","19","18","17","16","15","14","13","12","11","10","9","8","7","6","5","4","3","2","1"]},
+    "x": {"field": "Rooms", "type": "nominal", "sort": "ascending"},
+    "color": {"aggregate": "count", "field": "Price","scale":{"domain":[20,600]}}
   },
   "config": {
     "axis": {"grid": true, "tickBand": "extent"}
