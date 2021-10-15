@@ -1,0 +1,128 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data":{"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_homework2/main/data/Melbourne_housing_TRANSFORMED2.csv"},
+    "params": [{
+        "name":"type_selection",
+        "bind":{
+            "input":"select",
+            "options":[
+              "All",
+              "Houses",
+              "Units",
+              "Others"
+            ],
+            "labels": [
+              "All",
+              "Houses",
+              "Units",
+              "Others"
+            ],
+            "name":"Property Type Selection: "
+          }
+    }
+    ],
+    "transform": [
+        {"filter":"type_selection == null || datum.type == type_selection"}
+    ],
+    "columns":1,
+    "spacing":200,
+    "concat":[
+        {
+        "width": 800,
+        "height": 600,
+        "title": "Melbourne Median House prices",
+        "projection": {
+            "type": "equirectangular" ,
+            "center":[144.96,-37.8],
+            "scale":87000    
+        },
+        "layer":[
+            {
+                "data":{"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_homework2/main/js/vic_localities.json","format":{"type": "topojson","feature": "vic_localities"}},
+                "transform": [{
+                    "calculate": "'Data is not avali in ' + datum.properties.LOC_NAME",
+                    "as" : "note"
+                }],
+                "mark":{
+                    "type": "geoshape",
+                    "fill":"#ddd",
+                    "stroke": "white",
+                    "strokeWidth": 1
+                },
+                "encoding": {"tooltip": {"field": "note"}}
+            },
+            {
+                "transform":[
+                    {
+                        "lookup": "suburb",
+                        "from":{
+                        "data":{"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_homework2/main/js/vic_localities.json","format": {"type": "topojson","feature": "vic_localities"}},
+                        "key":"properties.LOC_NAME"
+                        },
+                    "as":"geo"
+                    },
+                    {"filter": "datum.type == type_selection"}
+                ],
+                "encoding":{
+                    "shape":{"field":"geo", "type": "geojson"},
+                    "color":{
+                        "field": "median",
+                        "type": "quantitative",
+                        "scale":{
+                            "domain":[
+                                400000,
+                                3000000
+                            ],
+                            "scheme":"reds"
+                        },
+                        "legend": {"format": ".2s"}
+                    },
+                    "tooltip":[
+                        {"field": "suburb", "type": "nominal", "title": "Suburb"},
+                        {
+                            "field":"median",
+                            "type": "quantitative",
+                            "title":"Median Price",
+                            "format":","
+                        },
+                        {"field":"year","type": "quantitative","title":"Year"}
+                    ]
+                },
+                "layer": [{"mark":{"type": "geoshape","stroke":"#fff","strokeWidth":0.5}}]
+            }
+        ]
+        },
+
+
+        {
+        "mark": "bar",
+        "encoding": {
+            "x":{
+                "bin":{"step":200000,"extent":[100000,2000000]},
+                "field":"median",
+                "type":"ordinal",
+                "title":"Price Interval"
+            },
+            "y":{
+                "aggregate": "count",
+                "type": "quantitative"
+            },
+            "color": {
+                "field": "type",
+                "type": "nominal",
+                "scale": {
+                  "domain": ["Houses", "Units", "Others"],
+                  "range": ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4"]
+                },
+                "title": "Houses type"
+            }
+        },
+        "transform": [
+            {"filter":"datum.median > 200000 && datum.median < 2000000"},
+            {"filter":"datum.type == type_selection"}
+        ]
+
+        }
+    ],
+    "config": {"title": {"font":"sans-serif","fontSize":14}}
+}
