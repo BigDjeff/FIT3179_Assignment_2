@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 450,
+  "height": 300,
+  "data": {
+    "values": [
+        {"number":13625,"name":"Houses"},
+        {"number":3054,"name":"Apartments"},
+        {"number":1303,"name":"Other"}
+    ]
+  },
+  "transform": [{
+    "calculate": "'There Are ' + datum.number + ' ' + datum.name + ' sold between 2016-2018'",
+    "as" : "note"
+  }],
+  "layer": [
+    {
+    "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"}
+    },
+    {
+    "mark": {"type": "text", "radiusOffset": 18},
+    "encoding": {
+      "text": {"field": "number", "type": "quantitative"}
+        }
+    },
+    {
+        "mark": {"type": "text","radiusOffset": -20,"stroke": "black"},
+        "encoding": {
+            "text": {"field": "name", "type": "ordinal"}
+        }
+    }
+  ],
+  "encoding": {
+    "theta": {"field": "number", "type": "quantitative", "stack": true},
+    "radius": {"field": "number", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}},
+    "color": {
+      "field": "number", 
+      "type": "nominal", 
+      "legend": null,
+      "scale":{
+        "range": [ "#f4a582", "#92c5de","#ca0020"]
+      }
+    },
+    "tooltip":[
+      {"field": "note","title":"What does it mean?"}
+    ]
+  },
+  "config": {
+    "view": {"stroke":"transparent"}
+  }
+}

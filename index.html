@@ -21,92 +21,102 @@
 </head>
 <body>
 
- <div class="page">
+  <div class="page">
 
-   <!-- pure grid group -->
+    <!-- Header -->
     <div class="pure-g">
       <div class="pure-u-1-1">
-        <h1>Visualising Property data</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Nunc consequat interdum varius sit. Vel risus commodo viverra maecenas accumsan lacus vel. Imperdiet massa tincidunt nunc pulvinar sapien et ligula. At erat pellentesque adipiscing commodo elit at imperdiet dui accumsan. Adipiscing tristique risus nec feugiat in fermentum. Auctor urna nunc id cursus metus aliquam eleifend. Fermentum iaculis eu non diam phasellus vestibulum lorem sed. </p>
-      </div>
-    </div>
-  <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-        <div class="pure-u-2-3">
-          <div class="description-top">
-            <h2>This is the first Visulisation</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Nunc consequat interdum varius sit. Vel risus commodo viverra maecenas accumsan lacus vel. Imperdiet massa tincidunt nunc pulvinar sapien et ligula. At erat pellentesque adipiscing commodo elit at imperdiet dui accumsan. Adipiscing tristique risus nec feugiat in fermentum. Auctor urna nunc id cursus metus aliquam eleifend. Fermentum iaculis eu non diam phasellus vestibulum lorem sed. </p>
-          </div>
-        </div>
-        <div class="pure-u-2-3">
-          <div id="vis1" class="vis-container"></div>
-        </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-2-3">
-        <div class="description-bottom">
-          <div class="pure-g">
-            <div class="pure-u-2-3">
-              <div class="description-bottom">
-                <h2>This is the second section</h2>
-                <p>Similar to the first section, the second section is a visulisation of a bubblechart wihh price and land size on axises and circles with different colors representing different number of bedroom the property has</p>
-              </div>
-            </div>
-          
-              <div class="pure-u-2-3">
-                <div id="vis2"  class="vis-container2"></div>
-              </div>
-          </div>
+        <div class="title">
+          <h1>Melbourne Propery Market Overview</h1>
+          <p>This visualisation is a quick overview of the Melbourne's property market from 2016 to 2018</p>
         </div>
       </div>
+    </div>
     
-        <div class="pure-u-2-3">
-          <div id="vis2"  class="vis-container2"></div>
-        </div>
-    </div>
-    <!-- end pure grid group -->
-
+    <!-- Intro Paragraph -->
     <div class="pure-g">
-      <div class="pure-u-2-3">
-        <div class="description-bottom2">
-          <h2>This is the second section</h2>
-          <p>    <div class="pure-g">
-            <div class="pure-u-2-3">
-              <div class="description-bottom">
-                <h2>This is the second section</h2>
-                <p>Similar to the first section, the second section is a visulisation of a bubblechart wihh price and land size on axises and circles with different colors representing different number of bedroom the property has</p>
-              </div>
-            </div>
-          
-              <div class="pure-u-2-3">
-                <div id="vis2"  class="vis-container2"></div>
-              </div>
-          </div></p>
+      <div class="pure-u-1-1">
+        <div class="Intro">
+          <p style="padding-left: 15px;">The Australian Housing market has been performing strongly in the past decade.
+          With <a class="red">6.8%</a> annual growth for <a class="red">houses</a> and <a class="blue">5.9%</a> annual growth for <a class="blue">apartments</a>. Let us take a deeper dive into the property market.</p>
         </div>
       </div>
-    
-        <div class="pure-u-2-3">
-          <div id="vis3"  class="vis-container3"></div>
+    </div>
+
+
+     <!-- Part 1 -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="sideline1">
+          <p style="padding-left: 15px;">
+            It came as no suprise that there are more <a class="red">houses</a> on sale than <a class="blue">apartments</a>. <a class="blue">Apartment</a> sales make up only around 20% of 
+            all dwellings in Australia. </br></br>Between 2016 - 2018, there were <strong>17982</strong> properties sold publicly and only 3054 of those were 
+            <a class="blue">apartments</a>, a merely 17% of total sales.
+          </p>
         </div>
+      </div>
+
+
+      <div class="pure-u-2-3">
+        <div id="vis2" class="vis-container2"></div>
+      </div>
+    </div>
+
+
+    <!-- Interactive map -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="mapPara1">
+          <p style="padding-left: 15px;">Let us look at the performances of each individual suburbs across different types and years.
+          Choropleth map below displays Median prices of different suburbs over the years. The bar chart shows all the properties sold with the price ranges.</p>
+        </div>
+      </div>
     </div>
   
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis1" class="vis-container1"></div>
+      </div>
+    </div>
+
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="mapPara2">
+          <p style="padding-left: 15px;">As expected, the properties market has been rising steadily over the time period. Espically the <strong>South-East</strong> 
+          suburbs next to the city. Most popular price ranges for houses have also stepped up from <strong>600k-800k</strong> to <strong>800k-1M</strong> dollors.   </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="sideline1">
+          <p style="padding-left: 15px;">
+            Lastly, the heat map on the right visuailzes the relationship between number of rooms and distance to CBD 
+            out of all sales record. </br></br>
+            Most popular <a class="red">houses</a> are around 3 bedrooms, between 6-17km from the CBD. On the other hand, <a class="blue">apartments</a> sold
+            are usually 1-2 bedrooms and within 2-14km from the CBD.
+          </p>
+        </div>
+      </div>
+
+      <div class="pure-u-2-3">
+        <div id="vis3" class="vis-container3"></div>
+      </div>
+    </div>
 
   </div> <!-- end page -->
    
 <script type="text/javascript">
-  var specVis1 = "js/map.vg";
-  var specVis2= "js/barchart.vega";
+  var specVis1 = "js/new_interactive.vega";
+  var specVis2= "js/RadialPlot.vega";
   var specVis3= "js/heatmap.vega";
 
   vegaEmbed('#vis1', specVis1, {"actions": false});
-  
   vegaEmbed('#vis2', specVis2, {"actions": false}).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
   vegaEmbed('#vis3', specVis3, {"actions": false}).then(function(result) {
   }).catch(console.error);

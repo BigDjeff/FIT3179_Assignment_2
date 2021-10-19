@@ -1,18 +1,65 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width":600,
   "data": {"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_Assignment_2/main/data/Melbourne_housing_FULL_landsz.csv"},
+  "width": 450,
+  "height": 300,
   "mark": "rect",
+  "params": [{
+    "name":"type_selection",
+    "bind":{
+        "input":"select",
+        "options":[
+          "h",
+          "u",
+          "t"
+        ],
+        "labels": [
+          "Houses",
+          "Units",
+          "Others"
+        ],
+        "name":"Property Type Selection: "
+      }
+  }],
   "transform": [
       {"filter": "datum.Distance <21"},
-      {"filter": "datum.Rooms <6 "}
+      {"filter": "datum.Rooms <6 "},
+      {"filter": "type_selection == null ||datum.Type == type_selection"}
   ],
   "encoding": {
-    "y": {"field": "Distance", "type": "ordinal", "sort": ["20","19","18","17","16","15","14","13","12","11","10","9","8","7","6","5","4","3","2","1"]},
-    "x": {"field": "Rooms", "type": "nominal", "sort": "ascending"},
-    "color": {"aggregate": "count", "field": "Price","scale":{"domain":[20,600]}}
+    "y": {
+      "title":"Distance to CBD (KMs)",
+      "field": "Distance", 
+      "axis":{
+        "grid": false
+      },
+      "type": "ordinal", 
+      "sort": ["20","19","18","17","16","15","14","13","12","11","10","9","8","7","6","5","4","3","2","1"]
+    },
+    "x": {
+      "title":"Number of Rooms",
+      "field": "Rooms", 
+      "axis":{
+        "grid": false,
+        "labelAngle": 0
+      },
+      "type": "nominal", 
+      "sort": "ascending"
+    },
+    "color": {
+      "title":"Number of properties",
+      "aggregate": "count",
+      "scale":{
+        "type": "threshold",
+        "domain":[50,150,250,350,450,550],
+        "range": ["#fef0d9", "#fdd49e", "#fdbb84","#fc8d59","#ef6548","#d7301f","#990000"]
+      }
+    },
+    "tooltip":[
+      {"field": "Distance", "type": "ordinal", "title": "Distance To city "},
+      {"field": "Rooms", "type": "nominal", "title": "Number of Rooms "}
+    ]
+
   },
-  "config": {
-    "axis": {"grid": true, "tickBand": "extent"}
-  }
-}
+  "config": {"view": {"stroke": "transparent"},"axis": {"grid": false, "tickBand": "extent"}}
+} 

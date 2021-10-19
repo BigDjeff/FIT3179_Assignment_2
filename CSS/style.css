@@ -1,47 +1,102 @@
-.body {
-    font-family: 'Open Sans', sans-serif;
-}
 
 h1 {
-    font-weight: 1000;
+    font-weight: 900;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: lightgray;
+    background-color: #2d324a;
 }
 
 .page {
-    width: 850px;
+    font-family: 'Poppins', sans-serif;
+    width: 1100px;
     background-color: white;
     margin: auto;
     padding: 50px;
     padding-top: 35px;
 }
 
-.vis-container {
-    width: 100%;
 
+.title {
+    text-align: center;
+    background-color: #2d324a;
+    padding: 25px;
 }
 
-.description h2,
-h1 {
-    margin-top: 0px;
-}
-
-.description-bottom {
-    padding-top: 40px;
-    padding-bottom: 40px;
+.title p {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    color: #ffdfdb;
 }
 
 .pure-g {
     margin-bottom: 25px;
 }
 
-.small-font {
-    font-size: 14px;
+.Intro {
+    text-align: justify;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+    border-top: 4px solid #2d324a;
+    border-bottom: 3px solid #2d324a;
+}
+.description1{
+    border-left: 3px solid #2d324a;
+    height: 200px;
+}
+.vis-container1{
+    margin-left: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+.sideline1{
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 30px;
+    border-left: 3px solid #2d324a;
+    height: 340px;
 }
 
-h2{
+.vis-container2{
+    margin-top: 30px;
+    margin-left: 130px;
     font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+
+.vis-container3{
+    margin-left: 130px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+.mapPara1{
+    text-align: justify;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+    border-top: 4px solid #2d324a;
+}
+
+.mapPara2{
+    text-align: justify;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+    border-bottom: 3px solid #2d324a;
+}
+.red{
+    color: #ca0020;
+}
+.blue{
+    color: #92c5de;
 }

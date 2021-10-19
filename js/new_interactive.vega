@@ -1,7 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data":{"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_homework2/main/data/Melbourne_housing_TRANSFORMED2.csv"},
-    "params": [{
+    "params": [
+    {
         "name":"type_selection",
         "bind":{
             "input":"select",
@@ -19,25 +20,36 @@
             ],
             "name":"Property Type Selection: "
           }
+    },
+    {
+        "name": "year_selection",
+        "value": 2016,
+        "bind":{
+          "input":"range",
+          "min":2016,
+          "max":2018,
+          "step": 1,
+          "name": "Year: "
+        }
     }
     ],
     "transform": [
-        {"filter":"type_selection == null || datum.type == type_selection"}
+        {"filter": "datum.year == year_selection"},
+        {"filter": "type_selection == null || datum.type == type_selection"}
     ],
-    "columns":1,
-    "spacing":200,
+    "columns":2,
+    "spacing":30,
     "concat":[
         {
-        "width": 800,
-        "height": 600,
-        "title": "Melbourne Median House prices",
+        "width": 450,
+        "height": 300,
         "projection": {
             "type": "equirectangular" ,
-            "center":[144.96,-37.8],
-            "scale":87000    
+            "center":[144.59,-37.6],
+            "scale":37000    
         },
         "layer":[
-            {
+             {
                 "data":{"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_homework2/main/js/vic_localities.json","format":{"type": "topojson","feature": "vic_localities"}},
                 "transform": [{
                     "calculate": "'Data is not avali in ' + datum.properties.LOC_NAME",
@@ -51,7 +63,14 @@
                 },
                 "encoding": {"tooltip": {"field": "note"}}
             },
-            {
+            {   
+                "title":{
+                    "text":"Choropleth Map of Melbourne Surburbs (2016-2018)",
+                    "anchor": "start",
+                    "font": "sans-serif",
+                    "fontSize":12,
+                    "fontWeight":100
+                },
                 "transform":[
                     {
                         "lookup": "suburb",
@@ -60,20 +79,18 @@
                         "key":"properties.LOC_NAME"
                         },
                     "as":"geo"
-                    },
-                    {"filter": "datum.type == type_selection"}
+                    }
                 ],
                 "encoding":{
                     "shape":{"field":"geo", "type": "geojson"},
                     "color":{
+                        "title":"Prices($)",
                         "field": "median",
                         "type": "quantitative",
                         "scale":{
-                            "domain":[
-                                400000,
-                                3000000
-                            ],
-                            "scheme":"reds"
+                            "type": "threshold",
+                            "domain":[400000,800000,1200000,1600000,2000000,2400000],
+                            "range": ["#fef0d9", "#fdd49e", "#fdbb84","#fc8d59","#ef6548","#d7301f","#990000"]
                         },
                         "legend": {"format": ".2s"}
                     },
@@ -93,36 +110,71 @@
         ]
         },
 
-
         {
-        "mark": "bar",
-        "encoding": {
-            "x":{
-                "bin":{"step":200000,"extent":[100000,2000000]},
-                "field":"median",
-                "type":"ordinal",
-                "title":"Price Interval"
+        "width": 400,
+        "height": 300,
+        "layer":[
+            {
+            "title":{
+                "text":"Bar Chart of properties price ranges (2016-2018)",
+                "anchor": "start",
+                "font": "sans-serif",
+                "fontSize":12,
+                "fontWeight":100
             },
-            "y":{
-                "aggregate": "count",
-                "type": "quantitative"
-            },
-            "color": {
-                "field": "type",
-                "type": "nominal",
-                "scale": {
-                  "domain": ["Houses", "Units", "Others"],
-                  "range": ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4"]
+            "mark": "bar",
+            "encoding": {
+                "x":{
+                    "bin":{"step":200000,"extent":[100000,2000000]},
+                    "field":"median",
+                    "axis":{
+                        "grid": false,
+                        "labelAngle": 30
+                    },
+                    "type":"ordinal",
+                    "title":"Price Range($)"
                 },
-                "title": "Houses type"
+                "y":{
+                    "axis":{"grid": false},
+                    "title":"Number of sales",
+                    "aggregate": "count",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "type",
+                    "type": "nominal",
+                    "scale": {
+                    "domain": ["Houses", "Others", "Units"],
+                    "range": ["#ca0020", "#f4a582", "#92c5de"]
+                    },
+                    "title": "Houses types"
+                },
+                "tooltip":[
+                    {"field": "type", "type": "nominal", "title": "Property Type"}
+                ]
+            },
+            
+            "transform": [
+                {"filter":"datum.median > 200000 && datum.median < 2000000"}
+            ]
+            },
+            {
+                "mark": { "type": "text", "align": "center","fontSize":13,"fontStyle":"italic", "fontWeight":100,"dx": -200, "dy": -250 },
+                "encoding": {
+                  "x": { "value": "width" },
+                  "y": { "value": "height" },
+                  "text": {
+                    "value": "Most Popular price range for properties is between 600k-800k"
+                  }
+                }
             }
-        },
-        "transform": [
-            {"filter":"datum.median > 200000 && datum.median < 2000000"},
-            {"filter":"datum.type == type_selection"}
-        ]
 
+        ]
         }
+
     ],
-    "config": {"title": {"font":"sans-serif","fontSize":14}}
-}
+    "config": {
+        "title": {"font":"sans-serif","fontSize":14},
+        "view": {"stroke": "transparent"}
+    }
+} 

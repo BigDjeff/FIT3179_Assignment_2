@@ -1,9 +1,9 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {"url": "https://raw.githubusercontent.com/BigDjeff/FIT3179_homework2/main/data/Melbourne_housing_TRANSFORMED2.csv"},
-    "mark": "bar",
     "width": 500,
     "height": 600,
+    "mark": "bar",
     "encoding": {
       "x": {
           "bin":{"step":200000,"extent":[100000,2000000]},
