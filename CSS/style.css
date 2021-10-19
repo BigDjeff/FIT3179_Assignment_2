@@ -100,3 +100,11 @@ body {
 .blue{
     color: #92c5de;
 }
+.footer{
+    text-align: justify;
+    margin-top: 30px;
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+
+}
